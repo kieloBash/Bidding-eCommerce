@@ -3,3 +3,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  /* padding: 0 2rem; */
+  /* width: 100vw; */
+  /* min-height: 100vh; */
+}
+.text-color{
+    color: rgb(87, 194, 255);
+}
+.stroke-color{
+    stroke: rgb(87, 194, 255);
+}
+.border-color{
+    border-color: rgb(87, 194, 255);
+}
+.background-color{
+    background-color: rgb(87, 194, 255);
+}
+
