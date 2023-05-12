@@ -2,7 +2,7 @@ import React from "react";
 
 const NavItem = ({ item, link }) => {
   return (
-    <div className="text-color text-2xl cursor-pointer hover:underline transition duration-300">
+    <div className="lg:text-2xl md:text-2xl text-lg cursor-pointer hover:underline transition duration-300 ">
       {item}
     </div>
   );

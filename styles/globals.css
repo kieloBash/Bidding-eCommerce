@@ -11,16 +11,18 @@ body {
   /* width: 100vw; */
   /* min-height: 100vh; */
 }
-.text-color{
-    color: rgb(87, 194, 255);
+.text-color {
+  color: rgb(87, 194, 255);
 }
-.stroke-color{
-    stroke: rgb(87, 194, 255);
+.stroke-color {
+  stroke: rgb(87, 194, 255);
 }
-.border-color{
-    border-color: rgb(87, 194, 255);
+.border-color {
+  border-color: rgb(87, 194, 255);
 }
-.background-color{
-    background-color: rgb(87, 194, 255);
+.background-color {
+  background-color: rgb(87, 194, 255);
 }
-
+.hover\:text-color:hover {
+  color: rgb(87, 194, 255);
+}
