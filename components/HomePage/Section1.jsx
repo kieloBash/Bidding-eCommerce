@@ -23,7 +23,7 @@ const Section1 = () => {
       <section className="hidden lg:flex md:flex flex-row gap-10 justify-start items-center">
         <div className="flex-1 ">
           <div className="border-[5px] bg-transparent border-color p-2 shadow-lg">
-            <div className="w-full h-[30rem] ">
+            <div className="w-full h-[30rem] grayscale hover:grayscale-0 transition duration-300 cursor-pointer">
               <Image
                 src={pic1}
                 width="0"
@@ -33,7 +33,7 @@ const Section1 = () => {
               />
             </div>
           </div>
-          <div className="w-full bg-black h-6 my-16 shadow-lg"></div>
+          <div className="w-full bg-black h-6 my-20 shadow-lg"></div>
         </div>
 
         <div className="flex-[2] flex flex-col justify-between gap-10">
@@ -65,7 +65,7 @@ const Section1 = () => {
 
         <div className="flex-1 ">
           <div className="border-[5px] bg-transparent border-black p-2 shadow-lg">
-            <div className="w-full h-[30rem] ">
+            <div className="w-full h-[30rem] grayscale hover:grayscale-0 transition duration-300 cursor-pointer">
               <Image
                 src={pic2}
                 width="0"
@@ -75,8 +75,10 @@ const Section1 = () => {
               />
             </div>
           </div>
-          <div className="w-full bg-black h-6 my-16 shadow-lg"></div>
+          <div className="w-full bg-black h-6 my-20 shadow-lg"></div>
         </div>
+
+        
       </section>
 
       {/* Mobile */}
@@ -107,44 +109,151 @@ const Section1 = () => {
           })}
         </div>
 
-        <div className="w-full grid grid-cols-2 sm:gap-x-10 sm:gap-y-2 gap-x-4 gap-y-0">
-          <div className="row-span-2">
-            <div className="border-[5px] bg-transparent border-color p-2 shadow-lg">
-              <div className="w-full h-[24rem] ">
-                <Image
-                  src={pic1}
-                  width="0"
-                  height="0"
-                  sizes="100vw"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
+        {active === "Exclusive" && (
+          <div className="w-full grid grid-cols-2 sm:gap-x-10 sm:gap-y-2 gap-x-4 gap-y-0">
+            <div className="row-span-2">
+              <div className="border-[5px] bg-transparent border-color p-2 shadow-lg">
+                <div className="w-full h-[24rem] grayscale hover:grayscale-0 transition duration-300 cursor-pointer">
+                  <Image
+                    src={pic1}
+                    width="0"
+                    height="0"
+                    sizes="100vw"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="row-span-1">
-            <div className="border-[5px] bg-transparent border-black p-2 shadow-lg">
-              <div className="w-full h-full ">
-                <Image
-                  src={pic2}
-                  width="0"
-                  height="0"
-                  sizes="100vw"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
+            <div className="row-span-1">
+              <div className="border-[5px] bg-transparent border-black p-2 shadow-lg">
+                <div className="w-full h-full grayscale hover:grayscale-0 transition duration-300 cursor-pointer">
+                  <Image
+                    src={pic2}
+                    width="0"
+                    height="0"
+                    sizes="100vw"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
               </div>
             </div>
+            <div className="w-full h-full">
+              {" "}
+              <button className="w-full h-full flex justify-center items-center border-[5px] border-black text-4xl shadow-2xl">
+                shop
+              </button>
+            </div>
           </div>
-          <div className="w-full h-full">
-            {" "}
-            <button className="w-full h-full flex justify-center items-center border-[5px] border-black text-4xl shadow-2xl">
-              shop
-            </button>
+        )}
+
+        {active === "Custom" && (
+          <div className="w-full grid grid-cols-2 sm:gap-x-10 sm:gap-y-2 gap-x-4 gap-y-0">
+            <div className="row-span-1">
+              <div className="border-[5px] bg-transparent border-black p-2 shadow-lg">
+                <div className="w-full h-full grayscale hover:grayscale-0 transition duration-300 cursor-pointer">
+                  <Image
+                    src={pic2}
+                    width="0"
+                    height="0"
+                    sizes="100vw"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="row-span-2">
+              <div className="border-[5px] bg-transparent border-color p-2 shadow-lg">
+                <div className="w-full h-[24rem] grayscale hover:grayscale-0 transition duration-300 cursor-pointer">
+                  <Image
+                    src={pic1}
+                    width="0"
+                    height="0"
+                    sizes="100vw"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full h-full">
+              {" "}
+              <button className="w-full h-full flex justify-center items-center border-[5px] border-black text-4xl shadow-2xl">
+                sell
+              </button>
+            </div>
           </div>
-        </div>
+        )}
+
+        {active === "Unofficial" && (
+          <div className="w-full grid grid-cols-2 sm:gap-x-10 sm:gap-y-2 gap-x-4 gap-y-6">
+            
+
+            <div className="row-span-1">
+              <div className="border-[5px] bg-transparent border-color p-2 shadow-lg">
+                <div className="w-full h-[20rem] grayscale hover:grayscale-0 transition duration-300 cursor-pointer">
+                  <Image
+                    src={pic1}
+                    width="0"
+                    height="0"
+                    sizes="100vw"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="row-span-1">
+              <div className="border-[5px] bg-transparent border-black p-2 shadow-lg">
+                <div className="w-full h-[20rem] grayscale hover:grayscale-0 transition duration-300 cursor-pointer">
+                  <Image
+                    src={pic2}
+                    width="0"
+                    height="0"
+                    sizes="100vw"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full h-full col-span-2">
+              {" "}
+              <button className="w-full h-full flex justify-center items-center border-[5px] border-black text-4xl shadow-2xl">
+                All for You
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className="w-full text-center mt-10 text-3xl">
           We'll get the{" "}
-          <span className="text-color font-semibold">{activeText} deals </span>for you
+          <span className="text-color font-semibold">{activeText} deals </span>
+          for you
         </div>
 
         <div className="w-full bg-black h-6 my-10 shadow-lg"></div>
