@@ -15,14 +15,14 @@ const Nav = () => {
     { item: "Decor", link: "/" },
   ];
 
-  const [isLoggedIn, setisLoggedIn] = useState(true);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   return (
     <>
       {/* Dekstop */}
       <nav className="w-full mt-10 hidden justify-between items-center mb-8 lg:flex md-flex">
-        <Link href="/">
+        <Link href="/" onClick={() => setToggleDropdown(false)}>
           <div className="flex flex-row justify-between items-center">
             <div className="overflow-hidden flex justify-center items-center w-24 h-24">
               <Image src={logo} width={100} height={100} alt="Logo" />
@@ -38,7 +38,7 @@ const Nav = () => {
                 className="flex justify-between gap-2 items-center text-color"
                 key={index}
               >
-                <NavItem item={nav.item} link={nav.link} key={index} />
+                <NavItem item={nav.item} link={nav.link} />
                 {index < navItems.length - 1 && (
                   <div className="text-black text-3xl cursor-default">.</div>
                 )}
@@ -67,7 +67,10 @@ const Nav = () => {
               <>
                 {isLoggedIn ? (
                   <div className="absolute z-50 top-full right-0 bg-black mt-2 flex flex-col border-[3px] border-color hover:border-white transition duration-200">
-                    <Link href="/profile" onClick={() => setToggleDropdown(false)}>
+                    <Link
+                      href="/profile"
+                      onClick={() => setToggleDropdown(false)}
+                    >
                       <div className="bg-white w-32 cursor-pointer">
                         <h1 className="text-xl text-right text-black border-b-[2px] border-gray-100 pr-2 py-1 hover:text-white hover:bg-black transition duration-200">
                           My Profile
@@ -87,11 +90,16 @@ const Nav = () => {
                         Log In
                       </h1>
                     </div>
-                    <div className="bg-white w-32 cursor-pointer">
-                      <h1 className="hover:font-bold text-xl text-right text-black border-b-[1px] border-gray-100 pr-2 py-1 hover:text-white hover:bg-black transition duration-200">
-                        Sign Up
-                      </h1>
-                    </div>
+                    <Link
+                      href="/signup"
+                      onClick={() => setToggleDropdown(false)}
+                    >
+                      <div className="bg-white w-32 cursor-pointer">
+                        <h1 className="hover:font-bold text-xl text-right text-black border-b-[1px] border-gray-100 pr-2 py-1 hover:text-white hover:bg-black transition duration-200">
+                          Sign Up
+                        </h1>
+                      </div>
+                    </Link>
                   </div>
                 )}
               </>
