@@ -7,6 +7,8 @@ import Link from "next/link";
 import logo from "../../public/assets/logo.png";
 import NavItem from "./NavItem";
 
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+
 const Nav = () => {
   const navItems = [
     { item: "Men", link: "/" },
@@ -15,8 +17,8 @@ const Nav = () => {
     { item: "Decor", link: "/" },
   ];
 
-  const [isLoggedIn, setisLoggedIn] = useState(false);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <>
@@ -47,62 +49,73 @@ const Nav = () => {
           })}
         </div>
 
-        <div className="flex flex-row gap-6 justify-between items-center">
-          <div className="h-12 w-12 rounded-full shadow-2xl flex justify-center items-center relative">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              className="stroke-color cursor-pointer"
-              onClick={() => setToggleDropdown((prev) => !prev)}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
-            {toggleDropdown && (
-              <>
-                {isLoggedIn ? (
-                  <div className="absolute z-50 top-full right-0 bg-black mt-2 flex flex-col border-[3px] border-color hover:border-white transition duration-200">
-                    <Link
-                      href="/profile"
-                      onClick={() => setToggleDropdown(false)}
-                    >
-                      <div className="bg-white w-32 cursor-pointer">
-                        <h1 className="text-xl text-right text-black border-b-[2px] border-gray-100 pr-2 py-1 hover:text-white hover:bg-black transition duration-200">
-                          My Profile
-                        </h1>
-                      </div>
-                    </Link>
-                    <div className="bg-white w-32 cursor-pointer">
-                      <h1 className="hover:font-bold text-xl text-right text-black border-b-[1px] border-gray-100 pr-2 py-1 hover:text-white hover:bg-black transition duration-200">
-                        Log out
-                      </h1>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="absolute z-50 top-full right-0 bg-black mt-2 flex flex-col border-[3px] border-color hover:border-white transition duration-200">
-                    <div className="bg-white w-32 cursor-pointer">
-                      <h1 className="text-xl text-right text-black border-b-[2px] border-gray-100 pr-2 py-1 hover:text-white hover:bg-black transition duration-200">
-                        Log In
-                      </h1>
-                    </div>
-                    <Link
-                      href="/signup"
-                      onClick={() => setToggleDropdown(false)}
-                    >
-                      <div className="bg-white w-32 cursor-pointer">
+        <div className="flex flex-row gap-12 justify-between items-center">
+          <div className="flex justify-center items-center gap-2">
+            <div className="h-12 w-12 rounded-full shadow-2xl flex justify-center items-center relative">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                className="stroke-color cursor-pointer"
+                onClick={() => setToggleDropdown((prev) => !prev)}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+              {toggleDropdown && (
+                <>
+                  {session?.user ? (
+                    <div className="absolute z-50 top-full right-0 bg-black mt-2 flex flex-col border-[3px] border-color hover:border-white transition duration-200">
+                      <Link
+                        href="/profile"
+                        onClick={() => setToggleDropdown(false)}
+                      >
+                        <div className="bg-white w-32 cursor-pointer">
+                          <h1 className="text-xl text-right text-black border-b-[2px] border-gray-100 pr-2 py-1 hover:text-white hover:bg-black transition duration-200">
+                            My Profile
+                          </h1>
+                        </div>
+                      </Link>
+                      <div
+                        className="bg-white w-32 cursor-pointer"
+                        onClick={() => signOut()}
+                      >
                         <h1 className="hover:font-bold text-xl text-right text-black border-b-[1px] border-gray-100 pr-2 py-1 hover:text-white hover:bg-black transition duration-200">
-                          Sign Up
+                          Log out
                         </h1>
                       </div>
-                    </Link>
-                  </div>
-                )}
-              </>
+                    </div>
+                  ) : (
+                    <div className="absolute z-50 top-full right-0 bg-black mt-2 flex flex-col border-[3px] border-color hover:border-white transition duration-200">
+                      <div
+                        className="bg-white w-32 cursor-pointer"
+                        onClick={() => signIn()}
+                      >
+                        <h1 className="text-xl text-right text-black border-b-[2px] border-gray-100 pr-2 py-1 hover:text-white hover:bg-black transition duration-200">
+                          Log In
+                        </h1>
+                      </div>
+                      <Link
+                        href="/signup"
+                        onClick={() => setToggleDropdown(false)}
+                      >
+                        <div className="bg-white w-32 cursor-pointer">
+                          <h1 className="hover:font-bold text-xl text-right text-black border-b-[1px] border-gray-100 pr-2 py-1 hover:text-white hover:bg-black transition duration-200">
+                            Sign Up
+                          </h1>
+                        </div>
+                      </Link>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+            {session?.user && (
+              <h1 className="text-2xl">Hi {session.user.username}!</h1>
             )}
           </div>
 
