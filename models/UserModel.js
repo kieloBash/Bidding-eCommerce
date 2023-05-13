@@ -14,6 +14,12 @@ const UserSchema = new Schema({
     type: String,
     required: [true, "Password is required!"],
   },
+  cart: {
+    type: [{
+      itemName: String,
+      price: Number
+    }],
+  },
 });
 
 const Users = models.Users || model("Users", UserSchema);
